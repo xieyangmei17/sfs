@@ -34,6 +34,9 @@ years.forEach(function(year) {
     var mubiaoLon = mubiaoCenter.coordinates().get(0);
     var mubiaoLat = mubiaoCenter.coordinates().get(1);
     
+    // 转换波段数据类型为 UInt16
+    landsatImage = landsatImage.select(['SR_B3', 'SR_B2', 'SR_B1']).toUint16();  // 注意使用 .toUint16()
+
     // 显示Landsat图像
     Map.setCenter(mubiaoLon.getInfo(), mubiaoLat.getInfo(), 10);  // 使用 mubiaoCenter 作为地图的中心
     Map.addLayer(landsatImage, visParams, 'Landsat ' + year + ' - mubiao');
